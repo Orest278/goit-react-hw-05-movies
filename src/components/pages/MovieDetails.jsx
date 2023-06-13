@@ -9,6 +9,8 @@ export const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const [showCast, setShowCast] = useState(false);
   const [showReviews, setShowReviews] = useState(false);
+  const location = useLocation();
+  const comeBack = useRef(location.state?.from || "/");
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -19,8 +21,7 @@ export const MovieDetails = () => {
     fetchMovieDetails();
   }, [id]);
 
-  const location = useLocation();
-  const comeBack = useRef(location.state?.from || "/");
+
 
   const handleCastClick = () => {
     setShowCast(!showCast);
@@ -40,7 +41,9 @@ export const MovieDetails = () => {
 
   return (
     <div>
-      <Link to={comeBack.current}>Go back</Link>
+      
+        <Link to={comeBack.current}>Go back</Link>
+      
       <h2>{title}</h2>
       <img
         width={200}
